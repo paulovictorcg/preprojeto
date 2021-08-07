@@ -1,0 +1,46 @@
+\changetocdepth {2}
+\babel@toc {brazil}{}\relax 
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {1}Introdução}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Uma seção secundária}{11}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Uma seção terciária}{12}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Outra seção terciária}{12}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Mais uma seção terciária}{14}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}Outra seção secundária}{15}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Mais uma seção secundária}{17}{section.1.3}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {2}Outra seção primária}{18}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Uma seção secundária}{19}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Uma seção terciária}{20}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Outra seção terciária}{21}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Mais uma seção terciária}{21}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Outra seção secundária}{22}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Mais uma seção secundária}{23}{section.2.3}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {3}Mais uma seção primária}{24}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Uma seção secundária}{24}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Uma seção terciária}{24}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Outra seção terciária}{25}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Mais uma seção terciária}{25}{subsection.3.1.3}%
+\contentsline {section}{\numberline {3.2}Outra seção secundária}{25}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Mais uma seção secundária}{26}{section.3.3}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {4}Mais uma outra seção primária}{27}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Uma seção secundária}{27}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Uma seção terciária}{27}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Outra seção terciária}{28}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4.1.3}Mais uma seção terciária}{28}{subsection.4.1.3}%
+\contentsline {section}{\numberline {4.2}Outra seção secundária}{28}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Mais uma seção secundária}{29}{section.4.3}%
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {5}Conclusão}{30}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Uma seção secundária}{30}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Uma seção terciária}{30}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Outra seção terciária}{31}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}Mais uma seção terciária}{31}{subsection.5.1.3}%
+\contentsline {section}{\numberline {5.2}Outra seção secundária}{31}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Mais uma seção secundária}{32}{section.5.3}%
+\vspace {\cftbeforechapterskip }
+\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
+\contentsline {chapter}{\MakeTextUppercase {Refer\^encias}}{33}{section*.5}%

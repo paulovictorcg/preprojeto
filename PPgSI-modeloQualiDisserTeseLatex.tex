@@ -1,0 +1,1304 @@
+%% abtex2-modelo-trabalho-academico.tex, v-1.9.2 laurocesar
+%% Copyright 2012-2014 by abnTeX2 group at http://abntex2.googlecode.com/ 
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is the abnTeX2 team, led
+%% by Lauro César Araujo. Further information are available on 
+%% http://abntex2.googlecode.com/
+%%
+%% This work consists of the files abntex2-modelo-trabalho-academico.tex,
+%% abntex2-modelo-include-comandos and abntex2-modelo-references.bib
+%%
+
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+% abnTeX2: Modelo de Trabalho Academico (tese de doutorado, dissertacao de
+% mestrado e trabalhos monograficos em geral) em conformidade com 
+% ABNT NBR 14724:2011: Informacao e documentacao - Trabalhos academicos -
+% Apresentacao
+% ------------------------------------------------------------------------
+% ------------------------------------------------------------------------
+
+%-------------------------------------------------------------------------
+% Modelo adaptado especificamente para o contexto do PPgSI-EACH-USP por 
+% Marcelo Fantinato, com auxílio dos Professores Norton T. Roman, Helton
+% H. Bíscaro e Sarajane M. Peres, em 2015, com muitos agradecimentos aos 
+% criadores da classe e do modelo base.
+%
+% 20/06/2017: inclusão de "lista de quadros" com base no especificado em:
+% https://github.com/abntex/abntex2/wiki/HowToCriarNovoAmbienteListing,
+% de autoria de "Eduardo de Santana Medeiros Alexandre".
+%
+%-------------------------------------------------------------------------
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	% openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% para impressão apenas no anverso (apenas frente). Oposto a twoside
+	a4paper,			% tamanho do papel. 
+	% -- opções da classe abntex2 --
+	%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	%french,				% idioma adicional para hifenização
+	%spanish,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+	]{abntex2ppgsi}
+
+% ---
+% Pacotes básicos 
+% ---
+% \usepackage{lmodern}			% Usa a fonte Latin Modern			
+% \usepackage[T1]{fontenc}		% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}		% Codificacao do documento (conversão automática dos acentos)
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}				% Controle das cores
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{microtype} 			% para melhorias de justificação
+\usepackage{pdfpages}     %para incluir pdf
+\usepackage{algorithm}			%para ilustrações do tipo algoritmo
+\usepackage{mdwlist}			%para itens com espaço padrão da abnt
+\usepackage[noend]{algpseudocode}			%para ilustrações do tipo algoritmo
+		
+% ---
+% Pacotes adicionais, usados apenas no âmbito do Modelo Canônico do abnteX2
+% ---
+\usepackage{lipsum}				% para geração de dummy text
+% ---
+
+% ---
+% Pacotes de citações
+% ---
+\usepackage{hyperref}
+\usepackage[brazilian,hyperpageref]{backref}	 % Paginas com as citações na bibl
+\usepackage[alf,abnt-etal-list=0,abnt-etal-text=it]{abntex2cite}	% Citações padrão ABNT
+
+% --- 
+% CONFIGURAÇÕES DE PACOTES
+% --- 
+
+% ---
+% Configurações do pacote backref
+% Usado sem a opção hyperpageref de backref
+\renewcommand{\backrefpagesname}{Citado na(s) página(s):~}
+% Texto padrão antes do número das páginas
+\renewcommand{\backref}{}
+% Define os textos da citação
+\renewcommand*{\backrefalt}[4]{
+	\ifcase #1 %
+		Nenhuma citação no texto.%
+	\or
+		Citado na página #2.%
+	\else
+		Citado #1 vezes nas páginas #2.%
+	\fi}%
+% ---
+
+% ---
+% Informações de dados para CAPA e FOLHA DE ROSTO
+% ---
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``instituicao'':
+%
+% Não mexer. Deixar exatamente como está.
+%
+%-------------------------------------------------------------------------
+\instituicao{
+	UNIVERSIDADE FEDERAL DE MINAS GERAIS
+	\par
+	INSTITUTO DE CIÊNCIAS EXATAS
+	\par
+	PROGRAMA DE PÓS-GRADUAÇÃO EM CIÊNCIA DA COMPUTAÇÃO}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``título'':
+%
+% Em maiúscula apenas a primeira letra da sentença (do título), exceto 
+% nomes próprios, geográficos, institucionais ou Programas ou Projetos ou 
+% siglas, os quais podem ter letras em maiúscula também.
+%
+% O subtítulo do trabalho é opcional.
+% Sem ponto final.
+%
+% Atenção: o título da Dissertação/Tese na versão corrigida não pode mudar. 
+% Ele deve ser idêntico ao da versão original.
+%
+%-------------------------------------------------------------------------
+\titulo{A alta mortalidade de pedestres no trânsito de Belo Horizonte: Uma análise da responsabilização dos acidentes via processamento de imagens }
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``autor'':
+%
+% Todas as letras em maiúsculas.
+% Nome completo.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\autor{\uppercase{Autor do Trabalho}}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``local'':
+%
+% Não incluir o ``estado''.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\local{Belo Horizonte}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre a ``data'':
+%
+% Colocar o ano do depósito (ou seja, o ano da entrega) da respectiva 
+% versão, seja ela a versão original (para a defesa) seja ela a versão 
+% corrigida (depois da aprovação na defesa). 
+%
+% Atenção: Se a versão original for depositada no final do ano e a versão 
+% corrigida for entregue no ano seguinte, o ano precisa ser atualizado no 
+% caso da versão corrigida. 
+% Cuidado, pois o ano da ``capa externa'' também precisa ser atualizado 
+% nesse caso.
+%
+% Não incluir o dia, nem o mês.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+\data{2021}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``Orientador'':
+%
+% Se for uma professora, trocar por ``Profa. Dra.''
+% Nome completo.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+%\orientador{}
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``Coorientador'':
+%
+% Opcional. Incluir apenas se houver co-orientador formal, de acordo com o 
+% Regulamento do Programa.
+%
+% Se for uma professora, trocar por ``Profa. Dra.''
+% Nome completo.
+% Sem ponto final.
+%-------------------------------------------------------------------------
+%\coorientador{}
+
+\tipotrabalho{Dissertação (Mestrado) / Tese (Doutorado)}
+
+\preambulo{
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o texto ``Versão 
+% original'':
+%
+% Não usar para Qualificação.
+% Não usar para versão corrigida de Dissertação/Tese.
+%
+%-------------------------------------------------------------------------
+%Versão original
+% \newline \newline \newline 
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o ``texto principal do
+% preambulo'':
+%
+% Para Doutorado, trocar por: Tese apresentada à Escola de Artes, Ciências e Humanidades da Universidade de São Paulo para obtenção do título de Doutor (ou Doutora) em Ciências pelo Programa de Pós-graduação em Sistemas de Informação. 
+%
+% Para Qualificação, trocar por: Projeto de pesquisa para exame de qualificação apresentado à Escola de Artes, Ciências e Humanidades da Universidade de São Paulo como parte dos requisitos para obtenção do título de Mestre (ou Doutor ou Doutora) em Ciências pelo Programa de Pós-graduação em Sistemas de Informação.
+%
+%-------------------------------------------------------------------------
+Pré-projeto de pesquisa para o exame de qualificação apresentado ao Instituto de Ciências Exatas da Universidade Federal de Minas Gerais, como requisito para ingresso ao Mestrado em Ciência da Computação.
+%
+\newline \newline Área de concentração: Visão Computacional, Inteligência Artificial.
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o texto da ``Versão 
+% corrigida'':
+%
+% Não usar para Qualificação.
+% Não usar para versão original de Dissertação/Tese.
+% 
+% Substituir ``xx de xxxxxxxxxxxxxxx de xxxx'' pela ``data da defesa''.
+%
+%-------------------------------------------------------------------------
+\newline \newline \newline %Versão corrigida contendo as alterações solicitadas pela comissão julgadora em xx de xxxxxxxxxxxxxxx de xxxx. A versão original encontra-se em acervo reservado na Biblioteca da EACH-USP e na Biblioteca Digital de Teses e Dissertações da USP (BDTD), de acordo com a Resolução CoPGr 6018, de 13 de outubro de 2011.
+}
+% ---
+
+
+% ---
+% Configurações de aparência do PDF final
+
+% alterando o aspecto da cor azul
+\definecolor{blue}{RGB}{41,5,195}
+
+% informações do PDF
+\makeatletter
+\hypersetup{
+     	%pagebackref=true,
+		pdftitle={\@title}, 
+		pdfauthor={\@author},
+    	pdfsubject={\imprimirpreambulo},
+	    pdfcreator={laTeX com abnTeX2 adaptado para o PPgSI-EACH-USP},
+		pdfkeywords={abnt}{latex}{abntex}{abntex2ppgsi}{qualificação de mestrado}{dissertação de mestrado}{qualificação de doutorado}{tese de doutorado}{ppgsi}, 
+		colorlinks=true,       		% false: boxed links; true: colored links
+    	linkcolor=blue,          	% color of internal links
+    	citecolor=blue,        		% color of links to bibliography
+    	filecolor=magenta,      		% color of file links
+		urlcolor=blue,
+		bookmarksdepth=4
+}
+\makeatother
+% --- 
+
+% --- 
+% Espaçamentos entre linhas e parágrafos 
+% --- 
+
+% O tamanho do parágrafo é dado por:
+\setlength{\parindent}{1.25cm}
+
+% Controle do espaçamento entre um parágrafo e outro:
+\setlength{\parskip}{0cm}  % tente também \onelineskip
+\renewcommand{\baselinestretch}{1.5}
+
+% ---
+% compila o indice
+% ---
+\makeindex
+% ---
+
+	% Controlar linhas orfas e viuvas
+  \clubpenalty10000
+  \widowpenalty10000
+  \displaywidowpenalty10000
+
+% ----
+% Início do documento
+% ----
+\begin{document}
+
+% Retira espaço extra obsoleto entre as frases.
+\frenchspacing 
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+% ---
+% Capa
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre a ``capa'':
+%
+% Esta é a ``capa'' principal/oficial do trabalho, a ser impressa apenas 
+% para os casos de encadernação simples (ou seja, em ``espiral'' com 
+% plástico na frente).
+% 
+% Não imprimir esta ``capa'' quando houver ``capa dura'' ou ``capa brochura'' 
+% em que estas mesmas informações já estão presentes nela.
+%
+%-------------------------------------------------------------------------
+\imprimircapa
+% ---
+
+% ---
+% Folha de rosto
+% (o * indica que haverá a ficha bibliográfica)
+% ---
+\imprimirfolhaderosto*
+% ---
+% ---
+% Inserir a autorização para reprodução e ficha bibliografica
+% ---
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre o texto da 
+% ``autorização para reprodução e ficha bibliografica'':
+%
+% Página a ser usada apenas para Dissertação/Tese (tanto na versão original 
+% quanto na versão corrigida).
+%
+% Solicitar a ficha catalográfica na Biblioteca da EACH. 
+% Duas versões devem ser solicitadas, em dois momentos distintos: uma vez 
+% para a versão original, e depois outra atualizada para a versão 
+% corrigida.
+%
+% Atenção: esta página de ``autorização para reprodução e ficha 
+% catalográfica'' deve ser impressa obrigatoriamente no verso da folha de 
+% rosto.
+%
+% Não usar esta página para Qualificação.
+%
+% Substitua o arquivo ``fig_ficha_catalografica.pdf'' abaixo referenciado 
+% pelo PDF elaborado pela Biblioteca
+%
+%-------------------------------------------------------------------------
+
+
+% ---
+% Inserir errata
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``Errata'':
+%
+% Usar esta página de errata apenas em casos de excepcionais, e apenas 
+% para a versão corrigida da Dissertação/Tese. Por exemplo, quando depois de
+% já depositada e publicada a versão corrigida, ainda assim verifica-se
+% a necessidade de alguma correção adicional.
+%
+% Se precisar usar esta página, busque a forma correta (o modelo correto) 
+% para fazê-lo, de acordo com a norma ABNT.
+%
+% Não usar esta página para versão original de Dissertação/Tese.
+% Não usar esta página para Qualificação.
+%
+%-------------------------------------------------------------------------
+
+% ---
+
+% ---
+% Inserir folha de aprovação
+% ---
+
+% ---
+
+% ---
+% Dedicatória
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``Dedicatória'': 
+%
+% Opcional para Dissertação/Tese.
+% Não sugerido para Qualificação.
+% 
+%-------------------------------------------------------------------------
+
+% ---
+
+% ---
+% Agradecimentos
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``Agradecimentos'': 
+%
+% Opcional para Dissertação/Tese.
+% Não sugerido para Qualificação.
+% 
+% 
+% Financiamentos recebidos durante o projeto de mestrado/doutorado, vindos de qualquer 
+% agência de fomento, devem ser mencionados na seção de agradecimentos da dissertação/tese. 
+% Isso se aplica não apenas a bolsas de estudo, mas a qualquer tipo de financiamento, 
+% tais como para apoio a participação em eventos, compra de materiais, traduções etc. 
+% Especificamente para financiamento da Capes, siga as instruções contidas na portaria 
+% 206, de 4/set/2018; para outras agências de fomento, procure as regras apropriadas.
+%
+% Portaria Capes 206, de 4/set/2018: 
+% http://ppgsi.each.usp.br/arquivos/Portaria_0783227_Portaria_CAPES_DOU___206_de_2018.pdf 
+%
+%
+%-------------------------------------------------------------------------
+
+% ---
+
+% ---
+% Epígrafe
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``Epígrafe'': 
+%
+% Opcional para Dissertação/Tese.
+% Não sugerido para Qualificação.
+% 
+%-------------------------------------------------------------------------
+
+% ---
+
+% ---
+% RESUMOS
+% ---
+
+% resumo em português
+\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+
+
+% resumo em inglês
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``resumo em inglês''
+% 
+% Caso a Qualificação ou a Dissertação/Tese inteira seja elaborada no idioma inglês, 
+% então o ``Abstract'' vem antes do ``Resumo''.
+% 
+%-------------------------------------------------------------------------
+
+
+% ---
+% ---
+% inserir lista de figuras
+% ---
+
+
+% ---
+% inserir lista de abreviaturas e siglas
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``Lista de abreviaturas 
+% e siglas'': 
+%
+% Opcional.
+% Uma vez que se deseja usar, é necessário manter padrão e consistência no
+% trabalho inteiro.
+% Se usar: inserir em ordem alfabética.
+%
+%-------------------------------------------------------------------------
+
+% ---
+
+% ---
+% inserir lista de símbolos
+% ---
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``Lista de símbolos'': 
+%
+% Opcional.
+% Uma vez que se deseja usar, é necessário manter padrão e consistência no
+% trabalho inteiro.
+% Se usar: inserir na ordem em que aparece no texto.
+% 
+%-------------------------------------------------------------------------
+
+% ---
+
+% ---
+% inserir o sumario
+% ---
+% \pdfbookmark[0]{\contentsname}{toc}
+% \tableofcontents*
+% \cleardoublepage
+% ---
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``títulos de seções''
+% 
+% Para todos os títulos (seções, subseções, tabelas, ilustrações, etc.):
+%
+% Em maiúscula apenas a primeira letra da sentença (do título), exceto 
+% nomes próprios, geográficos, institucionais ou Programas ou Projetos ou
+% siglas, os quais podem ter letras em maiúscula também.
+%
+%-------------------------------------------------------------------------
+\chapter{Introdução}
+Este \textit{template} apresenta as regras básicas para a elaboração do trabalho segundo as normas ABNT. Estas regras devem ser seguidas rigorosamente a fim de que o mesmo possa receber sua ficha catalográfica e ser posteriormente aprovado para publicação na Biblioteca Digital de Teses e Dissertações (BDTD) da USP. Qualquer desvio realizado nas configurações e recomendações deste \textit{template} poderá causar atrasos nesses processos, uma vez que o texto precisará ser corrigido antes. 
+
+Além das regras básicas previstas aqui, solicita-se consultar outros detalhes da norma ABNT sempre que se desejar inserir ou configurar algum elemento não previsto aqui. Ou seja, mesmo que este \textit{template} não preveja as demais regras ABNT, por ser uma visão simplificada, ainda assim elas precisam ser seguidas. O anexo \ref{anexoA} deste documento apresenta um resumo das normas ABNT, mas ainda assim também não completo.
+
+
+
+Especificamente em relação a introdução, sugere-se apresentá-la de forma mais estruturada possível. Busque fazer isso de forma clara, sem redundância, sem prolixidade. Uma sugestão é incluir as seguintes seções no capítulo de introdução:
+
+\begin{itemize}
+	\item \textbf{Contextualização/motivação}: inicie o capítulo de introdução com a contextualização geral do projeto, ou seja, uma visão geral da área em que o projeto se insere. Apresente a motivação macro para a realização de seu projeto de pesquisa. Para isso, não é necessário criar uma seção (1.1 Contextualização), mas sim use diretamente o texto introdutório do capítulo para isso.
+	\item \textbf{Justificativa/problema de pesquisa}: dentro do contexto em que seu projeto se insere, qual é exatamente o problema de pesquisa que ele visa ``atacar''? Ou seja, qual a justificativa para realizar seu projeto? Qual o problema principal que seu projeto de pesquisa busca resolver ou reduzir? Por que seu projeto é importante, necessário e desejável? Isso pode ser feito, por exemplo, apresentando uma ``lacuna'' que ainda não foi resolvida. Essa seção pode ser chamada ``Justificativa para a pesquisa'' ou ``Problema de pesquisa'' a depender de como você prefere apresentá-lo.
+	\item \textbf{Hipótese/proposição}: considerando o problema de pesquisa que seu projeto visa atacar, existe alguma hipótese de como esse problema pode ser resolvido ou o que pode resolvê-lo? Não confunda essa hipótese com possíveis hipóteses mais específicas a serem usadas dentro de um possível experimento ou validação a ser realizado em seu projeto de pesquisa, normalmente a ser testada com métodos estatísticos. A hipótese a ser apresentada na introdução é mais geral e ligada ao projeto de pesquisa de uma forma ampla, e não necessariamente será provada por algum teste estatístico. Trata-se de suposições gerais assumidas pelo autor como forma de direcionar a realização do projeto de pesquisa. Alguns autores preferem usar o termo ``proposição'' em vez de ``hipótese'' para esse caso.  Assim, essa seção pode ser chamada ``hipótese da pesquisa'' ou ``proposição da pesquisa'' (ou ainda no plural, se houver mais do que uma hipótese ou proposição).
+	\item \textbf{Objetivos}: assumindo que existe um problema a ser resolvido, apresente qual o objetivo de seu projeto de pesquisa. O que você pretende (ou pretendeu) exatamente fazer. Aqui, deve aparecer a principal ``contribuição'' de seu projeto. Qual é a principal ``coisa'' que você pretende/pretendeu fazer? Qual sua principal entrega? Isso sempre tratando do ponto de vista ``científico''. Um erro comum a ser evitado é dizer que a contribuição é, por exemplo, desenvolver uma ferramenta para algo, sendo que de fato a contribuição é propor algum tipo de abordagem ou fazer algum experimento para os quais uma ferramenta precisa ser desenvolvida (em geral, um protótipo) para ser usada como prova de conceito ou avaliação da abordagem em si sendo proposta ou para possibilitar a realização do experimento. Observe bem qual é sua contribuição científica (ferramenta quase sempre é contribuição tecnológica). Os objetivos podem ser de caráter geral e específicos. Não é necessário criar uma subseção para cada tipo. Pode haver uma única seção, chamada de ``objetivos'' cujo texto divida-se naturalmente em objetivo geral e objetivos específicos, deixando claro qual caso está sendo tratado em cada momento. Para diferenciar o objetivo geral dos objetivos específicos, siga as seguintes diretrizes:
+	\begin{itemize}
+		\item \textbf{Objetivo geral}: é o principal objetivo de seu projeto de pesquisa, aquele que consegue resumir em uma a três linhas a principal contribuição de seu projeto de pesquisa. 
+		\item \textbf{Objetivos específicos}: são objetivos secundários, uma forma de quebrar o objetivo geral em objetivos menores. Você não precisa necessariamente apresentar objetivos específicos, embora seja sempre uma boa prática. Não confunda em hipótese alguma os ``objetivos específicos'' com ``passos a serem realizados''; ou seja, não apresente como objetivos específicos itens tais como: ``revisão bibliográfica'', ``revisão sistemática'', ``consulta a especialistas'', ``definição do problema'', ``definição da técnica'', ``validação da abordagem'' etc.
+	\end{itemize}
+	\item \textbf{Método de pesquisa}: aprese as questões metodológicas a serem seguidas sem seu projeto de pesquisa. Se o método em si for algo bastante grande e importante para seu projeto, resuma-o na introdução e depois use um capítulo dedicado a ele. Caso contrário, apresente tudo sobre o método de pesquisa a própria introdução. Comece contextualizando sua pesquisa em: gênero (pesquisa teórica, pesquisa prática, pesquisa empírica, pesquisa metodológica); natureza (pesquisa básica/pura, pesquisa aplicada); objetivo (pesquisa exploratória, pesquisa descritiva, pesquisa explicativa, pesquisa propositiva); abordagem (pesquisa quantitativa, pesquisa qualitativa, pesquisa mista/quali-quanti). Esteja certo de que está usando corretamente essas classificações para caracterizar sua pesquisa; é comum entender de forma incorreta um ou mais desses termos. Em todos os casos, não apenas cite, mas sim justifique, explique bem, como sua pesquisa está sendo classificada. Depois, explique qual (ou quais) procedimento técnico você pretende usar (ou usou), incluindo, por exemplo, pesquisa do tipo: experimental, bibliográfica, documental, \textit{ex-post-facto}, de levantamento, com \textit{survey}, estudo de caso, participante, pesquisa-ação, etnográfica, netnográfica, teoria fundamentada em dados (\textit{grounded theory}), ciência do projeto (\textit{design science research}). Considere apenas as principais características de seu projeto em vez de tentar encaixá-lo em todos os itens possíveis; por exemplo, é comum uma pesquisa ser erroneamente caracterizada como ``bibliográfica'' apenas porque uma revisão bibliográfica foi realizada para subsidiá-la, mas que a principal característica em si da pesquisa não é ser do tipo ``bibliográfica''. Erros comuns também ocorrem em entendimento; por exemplo, é muito comum o termo ``estudo de caso'' ser usada de uma forma incorreta. Detalhe seu procedimento técnico, pois ele é o ``coração'' metodológico de seu projeto de pesquisa. Por fim, dependendo do procedimento técnico em questão, apresente as técnicas ou os instrumentos para uma possível coleta e análise de dados. Por exemplo, para coleta de dados, as seguintes técnicas podem ser usadas: medição, questionário, entrevista, grupos focais, formulário, benchmark, observação (direta / participante), diário de campo / notas de campo, análise documental (ou de artefatos). Para análise de dados, as seguintes técnicas podem ser usadas, como exemplo: análise quantitativa (estatística descritiva, estatística inferencial etc.), análise qualitativa (análise de conteúdo, análise do discurso etc.)
+	\item \textbf{Estrutura do documento}: apresentar uma visão geral de todos os capítulos do documento, incluindo possíveis apêndices e anexos.
+\end{itemize}
+
+Algumas sugestões adicionais em relação a esses itens introdutórios, que devem ser observados com atenção, são:
+\begin{itemize}
+	\item Evite usar sempre o objetivo de seu projeto como conteúdo para todas as seções acima mencionada, pois se isso estiver sendo feito é um sinal de que você não está conseguindo realmente tratar de forma adequada cada parte esperada. Ou seja, evite descrever esses itens de uma forma similar a esse exemplo:
+	\begin{itemize}
+		\item \textbf{Justificativa}: ainda não foi proposto um método para fazer tal coisa.
+		\item \textbf{Hipótese}: acredita-se que é possível propor um método para fazer tal coisa.
+		\item \textbf{Objetivo}: o objetivo deste projeto é propor um método para fazer tal coisa.
+	\end{itemize}
+	\item Evite repetir informações entre as diferentes seções acima sugeridas. Se você conseguir caracterizar bem cada item acima, de forma apropriada, não deve haver repetição de informação, mas sim informações que se complementem.
+\end{itemize}
+
+
+
+
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.  
+
+A tabela \ref{tab:ExemploDeTabela1} é um exemplo de como apresentar tabelas de acordo com essa norma. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``tabela''
+% 
+% Caption(Título) de tabelas e ilustração (tais como figura, gráfico, 
+% algoritmo, fotografia, quadro etc.) sempre acima da própria.
+%
+% Para todos os captions/(títulos) (de seções, subseções, tabelas, 
+% ilustrações, etc.):
+%     - em maiúscula apenas a primeira letra da sentença (do título), 
+%       exceto nomes próprios, geográficos, institucionais ou Programas ou
+%       Projetos ou siglas, os quais podem ter letras em maiúscula também.
+%
+% Todas  as tabelas, ilustrações (figuras, quadros, gráficos etc. ), 
+% anexos, apêndices devem obrigatoriamente ser citados no texto.
+%      - a citação deve vir sempre antes da primeira vez em que a tabela, 
+%        ilustração etc., aparecer pela primeira vez.
+%
+% Não confundir ``tabela'' com ``quadro''. Uma tabela deve ter dados 
+% numéricos como informação central. Outros tipos de organização de 
+% informações devem ser apresentados em quadros, que é um dos tipos de 
+% ilustração. A formatação de um quadro é muito parecida a de uma tabela, 
+% porém todos os traços horizontais e verticais devem ser apresentados.
+%
+%-------------------------------------------------------------------------
+\begin{table}[htbp]
+	\centering
+	\caption{Exemplo de título de tabela}
+		\begin{tabular}{p{1in} p{1in} p{1in} p{1in} } \hline
+
+		Cabeçalho 1	& Cabeçalho 2	& Cabeçalho 3	& Cabeçalho 4 \\ \hline
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ \hline
+		
+		\end{tabular}
+	\label{tab:ExemploDeTabela1}
+  \source{Marcelo Fantinato, 2015}
+\end{table}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+A seguir é apresentado um exemplo de lista de marcadores de apenas um nível (se você finalizar cada item da lista com ponto e vírgula, elas devem ser iniciadas com letra minúsculas; se você finalizar cada item da lista com ponto, elas devem ser iniciadas com letra maiúsculas):
+\begin{itemize}
+	\item sentença A;
+	\item sentença B mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto;
+	\item sentença C;
+	\item sentença D mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto.
+\end{itemize}
+
+A seguir é apresentado um exemplo de lista de numeração de apenas um nível (se você finalizar cada item da lista com ponto e vírgula, elas devem ser iniciadas com letra minúsculas; se você finalizar cada item da lista com ponto, elas devem ser iniciadas com letra maiúsculas):
+\begin{enumerate}
+	\item Sentença A.
+	\item Sentença B mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto.
+	\item Sentença C.
+	\item Sentença D mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto mais texto.
+	\item Sentença E.
+	\item Sentença F.
+\end{enumerate}
+
+A seguir é apresentado um exemplo de lista de marcadores vários níveis (se você finalizar cada item da lista com ponto e vírgula, elas devem ser iniciadas com letra minúsculas; se você finalizar cada item da lista com ponto, elas devem ser iniciadas com letra maiúsculas):
+\begin{itemize}
+	\item sentença A:
+  \begin{itemize}
+	   \item sentença A.1;
+	   \item sentença A.2:
+     \begin{itemize}
+	      \item sentença A.2.1;
+	      \item sentença A.2.2;
+	      \item sentença A.2.3.
+     \end{itemize}
+	   \item sentença A.3.
+  \end{itemize}
+	\item sentença B:
+  \begin{itemize}
+	   \item sentença B.1:
+     \begin{itemize}
+	      \item sentença B.1.1;
+	      \item sentença B.1.2;
+	      \item sentença B.1.3.
+     \end{itemize}
+	   \item sentença B.2;
+	   \item sentença B.3.
+  \end{itemize}
+\end{itemize}
+
+A seguir é apresentado um exemplo de lista de numeração de vários níveis (se você finalizar cada item da lista com ponto e vírgula, elas devem ser iniciadas com letra minúsculas; se você finalizar cada item da lista com ponto, elas devem ser iniciadas com letra maiúsculas):
+
+\begin{enumerate}
+	\item Sentença A:
+  \begin{enumerate}
+	  \item Sentença A.1.
+	  \item Sentença A.2:
+    \begin{enumerate}
+	    \item Sentença A.2.1.
+	    \item Sentença A.2.2.
+	    \item Sentença A.2.3.
+    \end{enumerate}
+	  \item Sentença A.3.
+	\end{enumerate}
+  \item Sentença B:
+  \begin{enumerate}
+	  \item Sentença B.1:
+      \begin{enumerate}
+  	    \item Sentença B.1.1.
+  	    \item Sentença B.1.2.
+  	    \item Sentença B.1.3.
+      \end{enumerate}
+	  \item Sentença B.2.
+	  \item Sentença B.3.
+  \end{enumerate}
+\end{enumerate}
+
+A figura \ref{fig:figura-exemplo1} é um exemplo de como apresentar ilustrações de acordo com essa norma. Qualquer outra ilustração deve ser apresentada de forma similar, mudando apenas o prefixo do título e a numeração. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+A figura \ref{fig:figura-exemplo1} também apresenta um exemplo de como incluir como ``Fonte'' algo que foi elaborado pelo próprio autor, especificamente para ser incluído neste texto. 
+
+Nesse caso, não use nenhum comando para citação, mas coloque simplesmente ``Fonte: Nome Sobrenome, Ano'', onde ``Nome Sobrenome'' deve ser o nome completo do autor deste texto e ``Ano'' deve ser o ano atual, ou seja, de elaboração deste texto. Nunca usar algo do tipo: ``Fonte: elaborado pelo autor''. Se for do próprio autor, e já tiver sido publicado, então seguir o exemplo apresentado na figura \ref{fig:figura-exemplo2}.
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``figura''
+% 
+% Caption(Título) de tabelas e ilustração (tais como figura, gráfico, 
+% algoritmo, fotografia, quadro etc.) sempre acima da própria.
+%
+% Para todos os captions/(títulos) (de seções, subseções, tabelas, 
+% ilustrações, etc.):
+%     - em maiúscula apenas a primeira letra da sentença (do título), 
+%       exceto nomes próprios, geográficos, institucionais ou Programas ou
+%       Projetos ou siglas, os quais podem ter letras em maiúscula também.
+%
+% Fonte de ilustração (tais como figura, gráfico, algoritmo, fotografia, 
+% quadro etc.) sempre abaixo da própria.
+%      - se a fonte for o próprio autor, colocar o nome dele. 
+%      - se a fonte for outro autor, citar sua referência.
+%
+% Todas  as tabelas, ilustrações (figuras, quadros, gráficos etc. ), 
+% anexos, apêndices devem obrigatoriamente ser citados no texto.
+%      - a citação deve vir sempre antes da primeira vez em que a tabela, 
+%        ilustração etc., aparecer pela primeira vez.
+%
+%-------------------------------------------------------------------------
+\begin{figure}[H]% H manda colocar exatamente nessa posição no texto (relativa aos parágrafos anterior e posterior)
+	\centering
+ 	  \caption{Exemplo de título de ilustração do tipo figura, incluindo como ``Fonte:'' o próprio autor}
+		\includegraphics{figura-exemplo.png}
+	\label{fig:figura-exemplo1}
+  \source{Marcelo Fantinato, 2015}
+\end{figure}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+O quadro \ref{qua:ExemploDeQuadro1} é um exemplo de como apresentar quadros de acordo com essa norma. Observe as diferenças de formatação entre uma tabela (cf. tabela tabela \ref{tab:ExemploDeTabela1}) e um quadro (cf. quadro \ref{qua:ExemploDeQuadro1}). Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``quadro''
+% 
+% Caption(Título) de tabelas e ilustração (tais como figura, gráfico, 
+% algoritmo, fotografia, quadro etc.) sempre acima da própria.
+%
+% Para todos os captions/(títulos) (de seções, subseções, tabelas, 
+% ilustrações, etc.):
+%     - em maiúscula apenas a primeira letra da sentença (do título), 
+%       exceto nomes próprios, geográficos, institucionais ou Programas ou
+%       Projetos ou siglas, os quais podem ter letras em maiúscula também.
+%
+% Todas  as tabelas, ilustrações (figuras, quadros, gráficos etc.), 
+% anexos, apêndices devem obrigatoriamente ser citados no texto.
+%      - a citação deve vir sempre antes da primeira vez em que a tabela, 
+%        ilustração etc., aparecer pela primeira vez.
+%
+% Não confundir ``tabela'' com ``quadro''. Uma tabela deve ter dados 
+% numéricos como informação central. Outros tipos de organização de 
+% informações devem ser apresentados em quadros, que é um dos tipos de 
+% ilustração. A formatação de um quadro é muito parecida a de uma tabela, 
+% porém todos os traços horizontais e verticais devem ser apresentados.
+%
+%-------------------------------------------------------------------------
+\begin{quadro}[H]
+	\centering
+	\caption{Exemplo de título de quadro}
+	\begin{tabular}{|p{1in} | p{1in} | p{1in} | p{1in} |} \hline
+		
+		Cabeçalho 1	& Cabeçalho 2	& Cabeçalho 3	& Cabeçalho 4 \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		
+	\end{tabular}
+	\label{qua:ExemploDeQuadro1}
+	\source{Marcelo Fantinato, 2015}
+\end{quadro}
+
+
+\section{Uma seção secundária}
+ 
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+A figura \ref{fig:figura-exemplo2} é um exemplo de como apresentar ilustrações de acordo com essa norma. Qualquer outra ilustração deve ser apresentada de forma similar, mudando apenas o prefixo do título e a numeração. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+A figura \ref{fig:figura-exemplo2} também apresenta um exemplo de como incluir em ``Fonte:'' uma citação para um trabalho já publicado, seja do próprio autor ou de outro autor. Nesse caso, use sempre o ``citeonline'', para o ano ficar separado do nome do autor, entre parênteses. Use sempre o ``citeonline'' inclusive para referenciar um trabalho do próprio autor, onde a imagem, tabela ou outro elemento já foi publicado. Se for do próprio autor, mas ainda não publicado, então seguir o exemplo apresentado na figura \ref{fig:figura-exemplo1}.
+
+\begin{figure}[htbp]
+	\centering
+  \caption{Exemplo de título de ilustração do tipo figura, que pode ser maior para apresentar mais explicações sobre o conteúdo da figura, se for o caso; e com exemplo de citação a um trabalho já publicado, seja do próprio autor ou de outro autor}
+		\includegraphics{figura-exemplo.png}
+	\label{fig:figura-exemplo2}
+  \source{\citeonline{teste3}}
+\end{figure}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\subsection{Uma seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+A tabela \ref{tab:ExemploDeTabela2} é outro exemplo de como apresentar tabelas de acordo com essa norma. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Exemplo de título de tabela, que pode ser maior para apresentar mais explicações sobre o conteúdo da tabela, se for o caso}
+		\begin{tabular}{p{1.2in} p{1.2in} p{1.2in} p{1.2in} } \hline
+		
+		Cabeçalho 1	& Cabeçalho 2	& Cabeçalho 3	& Cabeçalho 4 \\ \hline
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ \hline
+			
+		\end{tabular}
+	\label{tab:ExemploDeTabela2}
+  \source{Marcelo Fantinato, 2015}
+\end{table}
+
+\subsection{Outra seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+A figura \ref{fig:figura-exemplo3} é um exemplo de como apresentar ilustrações de acordo com essa norma. Qualquer outra ilustração deve ser apresentada de forma similar, mudando apenas o prefixo do título e a numeração. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+\begin{figure}[htbp]
+	\centering
+	\caption{Exemplo de título de ilustração do tipo figura}
+		\includegraphics{figura-exemplo.png}
+	\label{fig:figura-exemplo3}
+  \source{Marcelo Fantinato, 2015}
+\end{figure}
+
+O quadro \ref{qua:ExemploDeQuadro2} é mais um exemplo de como apresentar quadros de acordo com essa norma. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+\begin{quadro}[H]
+	\centering
+	\caption{Exemplo de título de quadro}
+	\begin{tabular}{|p{1in} | p{1in} | p{1in} | p{1in} |} \hline
+		
+		Cabeçalho 1	& Cabeçalho 2	& Cabeçalho 3	& Cabeçalho 4 \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		
+	\end{tabular}
+	\label{qua:ExemploDeQuadro2}
+	\source{Marcelo Fantinato, 2015}
+\end{quadro}
+
+O quadro \ref{qua:ExemploDeQuadro3} é mais um exemplo de como apresentar quadros de acordo com essa norma. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+\begin{quadro}[H]
+	\centering
+	\caption{Exemplo de título de quadro}
+	\begin{tabular}{|p{1in} | p{1in} | p{1in} | p{1in} |} \hline
+		
+		Cabeçalho 1	& Cabeçalho 2	& Cabeçalho 3	& Cabeçalho 4 \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		
+	\end{tabular}
+	\label{qua:ExemploDeQuadro3}
+	\source{Marcelo Fantinato, 2015}
+\end{quadro}
+
+\subsection{Mais uma seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+A tabela \ref{tab:ExemploDeTabela3} é um exemplo de como apresentar tabelas de acordo com essa norma. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Exemplo de título de tabela}
+		\begin{tabular}{p{0.85in} p{0.85in} p{0.85in} p{0.85in} } \hline
+		
+		Cabeçalho 1	& Cabeçalho 2	& Cabeçalho 3	& Cabeçalho 4 \\ \hline
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ \hline
+			
+		\end{tabular}
+	\label{tab:ExemploDeTabela3}
+  \source{Marcelo Fantinato, 2015}
+\end{table}
+
+
+A figura \ref{fig:figura-exemplo4} é um exemplo de como apresentar ilustrações de acordo com essa norma. Qualquer outra ilustração deve ser apresentada de forma similar, mudando apenas o prefixo do título e a numeração. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+\begin{figure}[htbp]
+	\centering
+	\caption{Exemplo de título bem grande de ilustração do tipo figura, bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande}
+		\includegraphics{figura-exemplo.png}
+	\label{fig:figura-exemplo4}
+  \source{Marcelo Fantinato, 2015}
+\end{figure}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+O quadro \ref{qua:ExemploDeQuadro4} é mais um exemplo de como apresentar quadros de acordo com essa norma. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+\begin{quadro}[H]
+	\centering
+	\caption{Exemplo de título de quadro}
+	\begin{tabular}{|p{1in} | p{1in} | p{1in} | p{1in} |} \hline
+		
+		Cabeçalho 1	& Cabeçalho 2	& Cabeçalho 3	& Cabeçalho 4 \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		Texto	& texto & texto	& texto \\ \hline
+		
+	\end{tabular}
+	\label{qua:ExemploDeQuadro4}
+	\source{Marcelo Fantinato, 2015}
+\end{quadro}
+
+\section{Outra seção secundária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+A tabela \ref{tab:ExemploDeTabela4} é outro exemplo de como apresentar tabelas de acordo com essa norma. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Exemplo de título bem grande de tabela, bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande}
+		\begin{tabular}{p{1.4in} p{1.4in} p{1.4in} p{1.4in} } \hline
+		
+		Cabeçalho 1	& Cabeçalho 2	& Cabeçalho 3	& Cabeçalho 4 \\ \hline
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ 
+		Texto	& número & número	& número \\ \hline
+			
+		\end{tabular}
+	\label{tab:ExemploDeTabela4}
+  \source{Marcelo Fantinato, 2015}
+\end{table}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+A tabela \ref{tab:ExemploDeTabela5} é outro exemplo de como apresentar tabelas de acordo com essa norma. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Exemplo de título de tabela}
+		\begin{tabular}{p{1.0in} p{1.0in} p{1.0in} } \hline
+		
+		Cabeçalho 1	& Cabeçalho 2	& Cabeçalho 3	 \\ \hline
+		número & número	& número \\ 
+		número & número	& número \\ 
+		número & número	& número \\ 
+		número & número	& número \\ 
+		número & número	& número \\ \hline
+			
+		\end{tabular}
+	\label{tab:ExemploDeTabela5}
+  \source{Marcelo Fantinato, 2015}
+\end{table}
+
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\section{Mais uma seção secundária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+A figura \ref{fig:figura-exemplo5} é um exemplo de como apresentar ilustrações de acordo com essa norma. Qualquer outra ilustração deve ser apresentada de forma similar, mudando apenas o prefixo do título e a numeração. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+\begin{figure}[htbp]
+	\centering
+	\caption{Exemplo de título de ilustração do tipo figura}
+		\includegraphics{figura-exemplo.png}
+	\label{fig:figura-exemplo5}
+  \source{Marcelo Fantinato, 2015}
+\end{figure}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\chapter{Outra seção primária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo\footnote{text}\footnote{text}\footnote{text}.
+
+Atenção ao fazer citações a referências para garantir o uso da forma correta, considerando os seguintes exemplos:
+\begin{itemize}
+	\item Se desejar que uma citação a uma referência apareça no final da frase, use com o comando ``cite''. Exemplo: ``Tal coisa é muito melhor do que aquela outra coisa \cite{teste1, teste2}''.
+	\item Se desejar que uma citação a uma referência apareça no meio da frase, como parte da própria frase, use o comando ``citeonline''. Exemplo: ``De acordo com \citeonline{teste3}, tal coisa é muito melhor do que aquela outra coisa.''
+	\item \textbf{Atenção} - nunca usar o comando ``cite'' para citações a referências que aparecem no meio da frase, como parte da própria frase. Exemplo - nunca fazer assim: ``De acordo com \cite{teste3}, tal coisa é muito melhor do que aquela outra coisa.''
+\end{itemize}
+
+O algoritmo \ref{alg:algoritmo-exemplo1} é um exemplo de como apresentar ilustrações de acordo com essa norma. Qualquer outra ilustração deve ser apresentada de forma similar, mudando apenas o prefixo do título e a numeração. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+%-------------------------------------------------------------------------
+% Comentário adicional do PPgSI - Informações sobre ``algoritmo''
+% 
+% Caption(Título) de tabelas e ilustração (tais como figura, gráfico, 
+% algoritmo, fotografia, quadro etc.) sempre acima da própria.
+%
+% Para todos os captions/(títulos) (de seções, subseções, tabelas, 
+% ilustrações, etc.):
+%     - em maiúscula apenas a primeira letra da sentença (do título), 
+%       exceto nomes próprios, geográficos, institucionais ou Programas ou
+%       Projetos ou siglas, os quais podem ter letras em maiúscula também.
+%
+% Fonte de ilustração (tais como figura, gráfico, algoritmo, fotografia, 
+% quadro etc.) sempre abaixo da própria.
+%      - se a fonte for o próprio autor, colocar o nome dele. 
+%      - se a fonte for outro autor, citar sua referência.
+%
+% Todas  as tabelas, ilustrações (figuras, quadros, gráficos etc. ), 
+% anexos, apêndices devem obrigatoriamente ser citados no texto.
+%      - a citação deve vir sempre antes da primeira vez em que a tabela, 
+%        ilustração etc., aparecer pela primeira vez.
+%
+%-------------------------------------------------------------------------
+\begin{algorithm}[htbp]
+\caption{Exemplo de título de ilustração do tipo algoritmo, que pode ser maior para apresentar mais explicações sobre o conteúdo do algoritmo, se for o caso}
+\label{alg:algoritmo-exemplo1}
+\begin{algorithmic}[1]
+\Procedure{MyProcedure}{}
+\State $passo-1$
+\State $passo-2$
+\State $passo-3$
+\State $.$
+\State $.$
+\State $.$
+\State $.$
+\State $.$
+\State $passo-n$
+\EndProcedure
+\end{algorithmic}
+\source{Marcelo Fantinato, 2015}
+\end{algorithm}
+
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\section{Uma seção secundária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+As fórmulas \ref{eq:equacao-exemplo1} e \ref{eq:equacao-exemplo2} são exemplos de como apresentar fórmulas e equações destacadas do parágrafo normal do texto. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+\begin{equation}
+  X + Y = Z
+	\label{eq:equacao-exemplo1}
+\end{equation}
+
+\begin{equation}
+  (X - Y)/5 = n
+	\label{eq:equacao-exemplo2}
+\end{equation}
+
+
+O algoritmo \ref{alg:algoritmo-exemplo2} é um exemplo de como apresentar ilustrações de acordo com essa norma. Qualquer outra ilustração deve ser apresentada de forma similar, mudando apenas o prefixo do título e a numeração. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+\begin{algorithm}[htbp]
+\caption{Exemplo de título de ilustração do tipo algoritmo}
+\label{alg:algoritmo-exemplo2}
+\begin{algorithmic}[1]
+\Procedure{MyProcedure}{}
+\State $passo-1$
+\State $passo-2$
+\State $passo-3$
+\State $.$
+\State $.$
+\State $.$
+\State $.$
+\State $.$
+\State $passo-n$
+\EndProcedure
+\end{algorithmic}
+\source{Marcelo Fantinato, 2015}
+\end{algorithm}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\subsection{Uma seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+O algoritmo \ref{alg:algoritmo-exemplo3} é um exemplo de como apresentar ilustrações de acordo com essa norma. Qualquer outra ilustração deve ser apresentada de forma similar, mudando apenas o prefixo do título e a numeração. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+\begin{algorithm}[htbp]
+\caption{Exemplo de título de ilustração do tipo algoritmo}
+\label{alg:algoritmo-exemplo3}
+\begin{algorithmic}[1]
+\Procedure{MyProcedure}{}
+\State $passo-1$
+\State $passo-2$
+\State $passo-3$
+\State $.$
+\State $.$
+\State $.$
+\State $.$
+\State $.$
+\State $passo-n$
+\EndProcedure
+\end{algorithmic}
+\source{Marcelo Fantinato, 2015}
+\end{algorithm}
+
+
+\subsection{Outra seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\subsection{Mais uma seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+O algoritmo \ref{alg:algoritmo-exemplo4} é um exemplo de como apresentar ilustrações de acordo com essa norma. Qualquer outra ilustração deve ser apresentada de forma similar, mudando apenas o prefixo do título e a numeração. Veja mais detalhes no anexo \ref{anexoA} deste documento.
+
+\begin{algorithm}[htbp]
+\caption{Exemplo de título bem grande de ilustração do tipo algoritmo, bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande bem grande}
+\label{alg:algoritmo-exemplo4}
+\begin{algorithmic}[1]
+\Procedure{MyProcedure}{}
+\State $passo-1$
+\State $passo-2$
+\State $passo-3$
+\State $.$
+\State $.$
+\State $.$
+\State $.$
+\State $.$
+\State $passo-n$
+\EndProcedure
+\end{algorithmic}
+\source{Marcelo Fantinato, 2015}
+\end{algorithm}
+
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\section{Outra seção secundária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\section{Mais uma seção secundária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\chapter{Mais uma seção primária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\section{Uma seção secundária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\subsection{Uma seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+
+\subsection{Outra seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\subsection{Mais uma seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\section{Outra seção secundária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\section{Mais uma seção secundária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\chapter{Mais uma outra seção primária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\section{Uma seção secundária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\subsection{Uma seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+
+\subsection{Outra seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\subsection{Mais uma seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\section{Outra seção secundária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\section{Mais uma seção secundária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\chapter{Conclusão}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\section{Uma seção secundária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\subsection{Uma seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\subsection{Outra seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\subsection{Mais uma seção terciária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\section{Outra seção secundária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+\section{Mais uma seção secundária}
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+Texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo, texto de exemplo.
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{referencias}
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%
+% Consulte o manual da classe abntex2 para orientações sobre o glossário.
+%
+%\glossary
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+
+% ---
+
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+
+% ---
+% Inicia os anexos
+% ---
+
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+%%%%%MF\phantompart
+%%%%%MF\printindex
+%---------------------------------------------------------------------
+
+\end{document}

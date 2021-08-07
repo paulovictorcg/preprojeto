@@ -1,0 +1,29 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem[Amenta \textit{et al.} 2002]{teste3}
+\abntrefinfo{Amenta \textit{et al.}}{AMENTA \textit{et al.}}{2002a}
+{AMENTA, N.; CHOI, S.; DEY, T.~K.; LEEKHA, N. A simple algorithm for
+  homeomorphic surface reconstruction.
+\emph{International Journal of Computational Geometry and Applications}, World
+  Scientific Publishing Co., v.~12, n.~1-2, p. 125--141, 2002.}
+
+\bibitem[Amenta \textit{et al.} 2002]{teste1}
+\abntrefinfo{Amenta \textit{et al.}}{AMENTA \textit{et al.}}{2002b}
+{AMENTA, N.; CHOI, S.; DEY, T.~K.; LEEKHA, N. A simple algorithm for
+  homeomorphic surface reconstruction.
+\emph{International Journal of Computational Geometry and Applications}, World
+  Scientific Publishing Co., v.~12, n.~1-2, p. 125--141, 2002.}
+
+\bibitem[Amenta \textit{et al.} 2002]{teste2}
+\abntrefinfo{Amenta \textit{et al.}}{AMENTA \textit{et al.}}{2002c}
+{AMENTA, N.; CHOI, S.; DEY, T.~K.; LEEKHA, N. A simple algorithm for
+  homeomorphic surface reconstruction.
+\emph{International Journal of Computational Geometry and Applications}, World
+  Scientific Publishing Co., v.~12, n.~1-2, p. 125--141, 2002.}
+
+\end{thebibliography}
